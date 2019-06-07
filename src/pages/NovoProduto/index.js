@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import { db, storage } from './../../config/database';
 import { getToken } from './../../services/auth';
@@ -14,7 +15,7 @@ export default class NovoProduto extends Component {
             description: '',
             animation: ''
         },
-        register: false
+        register: true
     }
 
     handleImage = event => {
@@ -29,7 +30,7 @@ export default class NovoProduto extends Component {
 
     cadastrarProduto = (event) => {
         event.preventDefault(event);
-        this.setState({ register: true });
+        this.setState({ register: false });
         const { nameProduct, preco, quantidade, descricao, tamanho, tipo, img } = this.state;
         console.log(nameProduct, preco, quantidade, descricao, tamanho, tipo, img);
 
@@ -43,10 +44,11 @@ export default class NovoProduto extends Component {
             setTimeout(() => {
                 this.setState({ erro: { description: '', animation: '' } });
             }, 5500);
-            this.setState({ register: false });
+            this.setState({ register: true });
             return;
         }
 
+        this.setState({register: false});
         const { name } = img;
 
         const user = db.collection('users').doc(getToken().uid);
@@ -55,6 +57,7 @@ export default class NovoProduto extends Component {
         ref.put(img).then(imgFile => {
             imgFile.ref.getDownloadURL().then(
                 downloadURL => {
+                    this.setState({register: false});
                     db.collection('products').doc().set({
                         descricao,
                         name: nameProduct,
@@ -70,13 +73,13 @@ export default class NovoProduto extends Component {
                             // Tempo para visualizar    
                             setTimeout(() => {
                                 this.setState({ success: { description: 'Produto Registrado com Sucesso. Aguarde...', animation: 'animated bounceOutRight' } });
-                            }, 5000);
+                            }, 1500);
                             // Tempo para retornar 
                             setTimeout(() => {
-                                this.setState({ success: { description: '', animation: '' }, register : false });
-                                this.props.history.push("/app/produtos/meus-produtos");
+                                this.setState({ success: { description: '', animation: '' }});
+                                this.props.history.push("/app/meus-produtos");
                                 return;
-                            }, 5500);
+                            }, 2000);
                         })
                 })
             .catch(erro => {
@@ -89,8 +92,8 @@ export default class NovoProduto extends Component {
                 setTimeout(() => {
                     this.setState({ erro: { description: '', animation: '' } });
                 }, 5500);
-                this.setState({ register: false });
-                return false;
+                this.setState({ register: true });
+                return;
             });
         })
         .catch(error => {
@@ -103,16 +106,17 @@ export default class NovoProduto extends Component {
             setTimeout(() => {
                 this.setState({ erro: { description: '', animation: '' } });
             }, 5500);
-                this.setState({ register: false });
+                this.setState({ register: true });
                 return;
             });
-        this.setState({ register: false });
+        this.setState({ register: true });
         return;
     }
 
     render() {
         return (
-            <div className="container mt-5 mb-3">
+            <div className="container mt-3 mb-3">
+                <h1>Adicionar Produto</h1>
                 {this.state.erro.description && <div id="erro" className={`alert alert-danger mt-2 mb-2 ${this.state.erro.animation}`} role="alert"> {this.state.erro.description}</div>}
                 {this.state.success.description && <div id="erro" className={`alert alert-success mt-2 mb-2 ${this.state.success.animation}`} role="alert"> {this.state.success.description}</div>}
                 <div className="card">
@@ -125,7 +129,7 @@ export default class NovoProduto extends Component {
                                 </div>
                                 <div className="form-group col-md-4">
                                     <label htmlFor="price">Preço</label>
-                                    <input type="number" className="form-control" id="price" placeholder="Preço : 400.50" onChange={event => this.setState({ preco: event.target.value })} />
+                                    <input type="text" className="form-control" id="price" placeholder="Preço : 400.50" onChange={event => this.setState({ preco: event.target.value })} />
                                 </div>
                                 <div className="form-group col-md-4">
                                     <label htmlFor="quantity">Quantidade</label>
@@ -162,8 +166,9 @@ export default class NovoProduto extends Component {
                                 {this.state.img && <span>Imagem Selecionada : {this.state.img.name}</span>}
                             </div>
                             <div className="form-row mt-3">
-                                {!this.state.register && <div className="form-group offset-md-5 col-md-2"> <button type="submit" className="btn btn-primary">Cadastrar Produto</button></div>}
-                                {this.state.register && <div className="form-group offset-md-6 col-md-2"><div className="spinner-border text-primary" role="status"><span className="sr-only">Loading...</span></div></div>}
+                                {this.state.register && <div className="form-group col-md-1"><Link to="/app/meus-produtos" className="btn btn-primary" style={{color:"#FFF", textDecoration:'none', float:'left'}}>Voltar</Link></div>}
+                                {this.state.register && <div className="form-group col-md-2 offset-md-9"><button type="submit" className="btn btn-success">Cadastrar Produto</button></div>}
+                                {!this.state.register && <div className="form-group offset-md-6 col-md-2"><div className="spinner-border text-primary" role="status"><span className="sr-only">Loading...</span></div></div>}
                             </div>
                         </form>
                     </div>

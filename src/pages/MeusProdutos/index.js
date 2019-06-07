@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { Modal } from 'react-bootstrap';
 
 import { db } from './../../config/database';
 import { getToken } from './../../services/auth';
-import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default class MeusProdutos extends Component {
 
@@ -10,6 +11,7 @@ export default class MeusProdutos extends Component {
         products: [],
         productForDelete: '',
         show: false,
+        loading: true,
         erro: {
             description: '',
             animation: ''
@@ -22,27 +24,35 @@ export default class MeusProdutos extends Component {
 
     async componentWillMount() {
         try {
+            this.setState({ loading : true});
             const allProduct = await db.collection('products').get();
             allProduct.forEach(async element => {
                 const user = await element.data().responsavel.get();
                 if (user.id === getToken().uid) {
                     this.setState({ products: [...this.state.products, { id: element.id, data: element.data() }] })
+                    this.setState({ loading : false});
+                } else if(user.id) {
+                    this.setState({ loading : false});
                 }
             });
+            return;
         } catch (err) {
             return;
         }
     }
 
-    showModal = (id) => {
-        this.setState({ show: true, productForDelete: id });
+    handleClose = () => {
+        this.setState({ show: false });
+    }
+
+    handleShow = (id) => {
+        this.setState({ show: true, productForDelete : id });
     }
 
     async deletarProduto(id) {
-        this.setState({ show: false });
         try {
             await db.collection('products').doc(id).delete();
-            this.setState({ success: { description: 'Produto Registrado com Sucesso.', animation: 'animated bounceIn' } });
+            this.setState({ success: { description: 'Produto Deletado com Sucesso.', animation: 'animated bounceIn' } });
             // Tempo para visualizar    
             setTimeout(() => {
                 this.setState({ success: { description: 'Produto Deletado com Sucesso.', animation: 'animated bounceOutRight' } });
@@ -50,8 +60,10 @@ export default class MeusProdutos extends Component {
             // Tempo para retornar 
             setTimeout(() => {
                 this.setState({ success: { description: '', animation: '' }, show: false });
-                }, 5500);
-                return <Redirect to="/app/produtos/meus-produtos" />;   
+            }, 5500);
+            this.handleClose();
+            window.location.reload();
+            return;   
         } catch (err) {
             this.setState({ erro: { description: 'Falha na Remoção', animation: 'animated bounceIn' } });
             // Tempo para visualizar
@@ -62,38 +74,47 @@ export default class MeusProdutos extends Component {
             setTimeout(() => {
                 this.setState({ erro: { description: '', animation: '' } });
             }, 5500);
+            this.handleClose();
+            return;
         }
     }
-
+    
     render() {
+        if(this.state.loading)
+            return(
+                <div style={{
+                    marginTop:'20%',
+                    height:'100%',
+                    minHeight: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                }}><div className="spinner-border text-primary" role="status"><span className="sr-only">Loading...</span></div></div>
+            );
         return (
             <div className="container">
                 {this.state.erro.description && <div id="erro" className={`alert alert-danger mt-2 mb-2 ${this.state.erro.animation}`} role="alert"> {this.state.erro.description}</div>}
                 {this.state.success.description && <div id="erro" className={`alert alert-success mt-2 mb-2 ${this.state.success.animation}`} role="alert"> {this.state.success.description}</div>}
                 <h1>Meus Produtos - {getToken().database.username}</h1>
-                {this.state.show &&
-                    <div>
-                        <div className="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
-                            <div className="modal-dialog modal-dialog-centered" role="document">
-                                <div className="modal-content">
-                                    <div className="modal-header">
-                                        <h5 className="modal-title" id="TituloModalCentralizado">Atenção</h5>
-                                        <button type="button" className="close" data-dismiss="modal" aria-label="Fechar">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div className="modal-body">
-                                        Você realmente deseja excluir o item de sua vitrine, após sua exclusão nenhum outro usuário poderá compra-lo ou fazer um pedido.
-                                </div>
-                                    <div className="modal-footer">
-                                        <button type="button" onClick={() => this.setState({ show: false })} className="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                        <button type="button" onClick={() => this.deletarProduto(this.state.productForDelete)} className="btn btn-danger">Deletar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
+                {/* Inicio Modal */}
+                <Modal show={this.state.show} onHide={this.handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Atenção</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Você realmente deseja excluir o item de sua vitrine, após sua exclusão nenhum outro usuário poderá compra-lo ou fazer um pedido.</Modal.Body>
+                    <Modal.Footer>
+                        <button className="btn btn-primary" onClick={this.handleClose}>
+                            Fechar
+                        </button>
+                        <button className="btn btn-danger" onClick={() => this.deletarProduto(this.state.productForDelete)}>
+                            Remover
+                        </button>
+                    </Modal.Footer>
+                </Modal>
+                {/* Fim Modal */}
+                <div className="col-md-2 offset-md-10 mt-4">
+                    <Link to="/app/meus-produtos/novo" className="btn btn-success" style={{color:"#FFF", textDecoration:'none'}}>Adicionar Produto</Link>
+                </div>
                 <table className="table mt-4">
                     <thead className="thead-dark">
                         <tr>
@@ -106,7 +127,7 @@ export default class MeusProdutos extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.products.map(product => (
+                        {this.state.products[0] && this.state.products.map(product => (
                             <tr key={product.id}>
                                 <th scope="col">{product.id}</th>
                                 <th scope="col">{product.data.name}</th>
@@ -114,14 +135,14 @@ export default class MeusProdutos extends Component {
                                 <th scope="col">{product.data.quantidade}</th>
                                 <th scope="col">{product.data.preco}</th>
                                 <th scope="col">
-                                    <span style={{ cursor: "pointer" }} className='mr-2' onClick={() => { }}>Editar</span>
-                                    {/* <span style={{ cursor: "pointer" }} onClick={() => this.deletarProduto(product.id)}>Excluir</span> */}
-                                    <button type="button" onClick={() => this.showModal(product.id)} className="btn btn-danger" data-toggle="modal" data-target="#ExemploModalCentralizado">Remover</button>
+                                <button type="button" onClick={() => {}} className="btn btn-primary mr-1">Editar</button>
+                                <button type="button" onClick={() => this.handleShow(product.id)} className="btn btn-danger ml-1" data-toggle="modal" data-target="">Remover</button>
                                 </th>
                             </tr>
                         ))}
                     </tbody>
                 </table>
+                {!this.state.products[0] && <p>Nenhum Produto Cadastrado</p> }
             </div>
         );
     }
