@@ -10,6 +10,8 @@ import Login from './../pages/Login';
 import NovoProduto from '../pages/NovoProduto';
 import MeusProdutos from './../pages/MeusProdutos';
 
+import Banner from '../components/Banner';
+
 export default class Routes extends Component {
 
   render() {
@@ -17,7 +19,7 @@ export default class Routes extends Component {
       <BrowserRouter>
         <Switch>
           {/* Rotas Comuns */}
-          <Route exact path="/" component={() => <h1>Bem Vindo ao Youmall</h1>} />
+          <Route exact path="/" component={() => <Banner title="Vai da certo"/>} />
           <AuthenticationRoute path="/login" component={Login} />
           <AuthenticationRoute path="/registro" component={Registro} />
           {/* Rotas Com Autenticação */}
