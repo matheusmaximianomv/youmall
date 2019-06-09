@@ -7,8 +7,9 @@ import AuthenticationRoute from './AuthenticationRoute';
 
 import Registro from './../pages/Registro';
 import Login from './../pages/Login';
-import NovoProduto from '../pages/NovoProduto';
 import MeusProdutos from './../pages/MeusProdutos';
+import NovoProduto from '../pages/NovoProduto';
+import EditarProduto from '../pages/EditarProduto';
 
 import Banner from '../components/Banner';
 
@@ -29,7 +30,7 @@ export default class Routes extends Component {
           <PrivateRoute exact path="/app/produtos/:slug_product" component={() => <h1>Mostrando descrição de um produto da plataforma</h1>} />
           <PrivateRoute exact path="/app/meus-produtos" component={MeusProdutos} />
           <PrivateRoute exact path="/app/meus-produtos/novo" component={NovoProduto} />
-          <PrivateRoute exact path="/app/meus-produtos/editar/:id" component={NovoProduto} />
+          <PrivateRoute exact path="/app/meus-produtos/editar/:id" component={EditarProduto} />
           <PrivateRoute path="/app/carrinho" component={() => <h1>Seu Carrinho de Compras</h1>} />
           <PrivateRoute path="/app/carrinho/pagamento" component={() => <h2>processo de pagamento</h2>} />
           {/* Rotas De Administrador */}

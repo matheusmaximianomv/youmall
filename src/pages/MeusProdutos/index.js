@@ -79,6 +79,10 @@ export default class MeusProdutos extends Component {
         }
     }
     
+    editarProduto = (id) => {
+        window.location.assign(`/app/meus-produtos/editar/${id}`);
+    }
+
     render() {
         if(this.state.loading)
             return(
@@ -135,7 +139,7 @@ export default class MeusProdutos extends Component {
                                 <th scope="col">{product.data.quantidade}</th>
                                 <th scope="col">{product.data.preco}</th>
                                 <th scope="col">
-                                <button type="button" onClick={() => {}} className="btn btn-primary mr-1">Editar</button>
+                                <button type="button" onClick={() => this.editarProduto(product.id)} className="btn btn-primary mr-1">Editar</button>
                                 <button type="button" onClick={() => this.handleShow(product.id)} className="btn btn-danger ml-1" data-toggle="modal" data-target="">Remover</button>
                                 </th>
                             </tr>
