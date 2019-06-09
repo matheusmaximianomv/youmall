@@ -1,12 +1,18 @@
+/* Funcionalidades */
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
+/* Tipos de Rota */
 import PrivateRoute from './PrivateRoute';
 import AdministratorRoute from './AdministratorRoute';
 import AuthenticationRoute from './AuthenticationRoute';
 
+/* Páginas de Registro e Autenticação */
 import Registro from './../pages/Registro';
 import Login from './../pages/Login';
+/* Páginas de Produtos Gerais da Plataforma */
+import Produtos from './../pages/Produtos';
+/* Páginas de Controle de Produtos Pessoais  */
 import MeusProdutos from './../pages/MeusProdutos';
 import NovoProduto from '../pages/NovoProduto';
 import EditarProduto from '../pages/EditarProduto';
@@ -26,7 +32,7 @@ export default class Routes extends Component {
           {/* Rotas Com Autenticação */}
           <PrivateRoute exact path="/app" component={() => <h1>Home</h1>} />
           <PrivateRoute exact path="/app/perfil" component={() => <h1>Perfil do Usuário</h1>} />
-          <PrivateRoute exact path="/app/produtos" component={() => <h1>Mostrando Produtos da Plataforma</h1>} />
+          <PrivateRoute exact path="/app/produtos" component={Produtos} />
           <PrivateRoute exact path="/app/produtos/:slug_product" component={() => <h1>Mostrando descrição de um produto da plataforma</h1>} />
           <PrivateRoute exact path="/app/meus-produtos" component={MeusProdutos} />
           <PrivateRoute exact path="/app/meus-produtos/novo" component={NovoProduto} />
