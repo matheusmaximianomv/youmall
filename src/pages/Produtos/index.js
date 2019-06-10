@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Card, ListGroup, ListGroupItem, CardDeck, Modal, Alert } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 import { db } from './../../config/database';
 import { getToken } from './../../services/auth';
@@ -146,7 +147,11 @@ export default class Produtos extends Component {
                                     </ListGroup>
                                     <Card.Body>
                                         <Card.Link style={{ color: "blue", cursor: "pointer" }} onClick={() => this.handleShow(product)}>Denunciar</Card.Link>
-                                        <Card.Link href="#">Detalhes</Card.Link>
+                                        <Card.Link href="#">
+                                            <Link to={`/app/produtos/${product.id}`}>
+                                                Detalhes
+                                            </Link>
+                                        </Card.Link>
                                         <Card.Link href="#">Adicionar</Card.Link>
                                     </Card.Body>
                                 </Card>

@@ -12,6 +12,7 @@ import Registro from './../pages/Registro';
 import Login from './../pages/Login';
 /* Páginas de Produtos Gerais da Plataforma */
 import Produtos from './../pages/Produtos';
+import ProdutoSlug from './../pages/Produtos/ProdutoSlug/index';
 /* Páginas de Controle de Produtos Pessoais  */
 import MeusProdutos from './../pages/MeusProdutos';
 import NovoProduto from '../pages/NovoProduto';
@@ -33,7 +34,7 @@ export default class Routes extends Component {
           <PrivateRoute exact path="/app" component={() => <h1>Home</h1>} />
           <PrivateRoute exact path="/app/perfil" component={() => <h1>Perfil do Usuário</h1>} />
           <PrivateRoute exact path="/app/produtos" component={Produtos} />
-          <PrivateRoute exact path="/app/produtos/:slug_product" component={() => <h1>Mostrando descrição de um produto da plataforma</h1>} />
+          <PrivateRoute exact path="/app/produtos/:slug_product" component={ProdutoSlug} />
           <PrivateRoute exact path="/app/meus-produtos" component={MeusProdutos} />
           <PrivateRoute exact path="/app/meus-produtos/novo" component={NovoProduto} />
           <PrivateRoute exact path="/app/meus-produtos/editar/:id" component={EditarProduto} />
