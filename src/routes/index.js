@@ -22,9 +22,6 @@ import EditarProduto from '../pages/EditarProduto';
 /* Página de Perfil de Usuário */
 import Perfil from '../pages/Perfil';
 
-import Banner from '../components/Banner';
-import NavBar from '../components/NavBar';
-
 export default class Routes extends Component {
 
   render() {

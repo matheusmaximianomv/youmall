@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import { Link } from 'react-router-dom';
 
 import { isAuthenticated, getToken, logout } from './../../services/auth';
 
@@ -19,7 +20,7 @@ export default class Banner extends Component{
                         <nav className="navbar navbar-expand-lg navbar-light main_box">
                             <div className="container">
                             
-                                <a className="navbar-brand logo_h" href="index.html"><img style={{width : "40%", height:"25%"}} src="img/logo.png" alt=""/></a>
+                                <Link className="navbar-brand logo_h" to="index.html"><img style={{width : "40%", height:"25%"}} src="img/logo.png" alt=""/></Link>
                                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                     <span className="icon-bar"></span>
@@ -29,22 +30,22 @@ export default class Banner extends Component{
                             
                                 <div className="collapse navbar-collapse offset" id="navbarSupportedContent">
                                     <ul className="nav navbar-nav menu_nav ml-auto">
-                                        <li className="nav-item"><a className="nav-link" href="/">Home</a></li>
-                                        <li className="nav-item" style={{cursor:"pointer"}}><a className="nav-link" >Admin</a></li>
+                                        <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
+                                        <li className="nav-item" style={{cursor:"pointer"}}><Link className="nav-link" >Admin</Link></li>
                                 
                                         <li className="nav-item submenu dropdown">
-                                            <a href="category.html" className="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                            aria-expanded="false">Loja</a>
+                                            <Link to="category.html" className="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                            aria-expanded="false">Loja</Link>
                                             <ul className="dropdown-menu">
-                                                <li className="nav-item"><a className="nav-link" href="/app/meus-produtos">Meus Produtos</a></li>
-                                                <li className="nav-item"><a className="nav-link" href="/app/produtos">Produtos</a></li>
+                                                <li className="nav-item"><Link className="nav-link" to="/app/meus-produtos">Meus Produtos</Link></li>
+                                                <li className="nav-item"><Link className="nav-link" to="/app/produtos">Produtos</Link></li>
                                             </ul>
                                         </li>
-                                        <li className="nav-item"><a className="nav-link" href="/app/perfil">Perfil</a></li>
-                                        <li className="nav-item" style={{cursor:"pointer"}} onClick={this.sair}><a className="nav-link">Sair</a></li>
+                                        <li className="nav-item"><Link className="nav-link" to="/app/perfil">Perfil</Link></li>
+                                        <li className="nav-item" style={{cursor:"pointer"}} onClick={this.sair}><Link className="nav-link">Sair</Link></li>
                                     </ul>
                                     <ul className="nav navbar-nav navbar-right">
-                                        <li className="nav-item"><a href="#" className="cart"><i className="fas fa-shopping-cart"></i></a></li>
+                                        <li className="nav-item"><Link to="#" className="cart"><i className="fas fa-shopping-cart"></i></Link></li>
                                     </ul>
                                 </div>
                             </div>
@@ -65,7 +66,7 @@ export default class Banner extends Component{
                         <div className="main_menu">
                                 <nav className="navbar navbar-expand-lg navbar-light main_box">
                                     <div className="container">
-                                        <a className="navbar-brand logo_h" href="index.html"><img style={{width : "40%", height:"25%"}} src="img/logo.png" alt="" /></a>
+                                        <Link className="navbar-brand logo_h" to="index.html"><img style={{width : "40%", height:"25%"}} src="img/logo.png" alt="" /></Link>
                                         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                             <span className="icon-bar"></span>
@@ -75,21 +76,21 @@ export default class Banner extends Component{
                         
                                         <div className="collapse navbar-collapse offset" id="navbarSupportedContent">
                                             <ul className="nav navbar-nav menu_nav ml-auto">
-                                                <li className="nav-item"><a className="nav-link" href="/">Home</a></li>
+                                                <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
                                         
                                                 <li className="nav-item submenu dropdown">
-                                                    <a href="category.html" className="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                                    aria-expanded="false">Loja</a>
+                                                    <Link to="category.html" className="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                                    aria-expanded="false">Loja</Link>
                                                     <ul className="dropdown-menu">
-                                                        <li className="nav-item"><a className="nav-link" href="/app/meus-produtos">Meus Produtos</a></li>
-                                                        <li className="nav-item"><a className="nav-link" href="/app/produtos">Produtos</a></li>
+                                                        <li className="nav-item"><Link className="nav-link" to="/app/meus-produtos">Meus Produtos</Link></li>
+                                                        <li className="nav-item"><Link className="nav-link" to="/app/produtos">Produtos</Link></li>
                                                     </ul>
                                                 </li>
-                                                    <li className="nav-item"><a className="nav-link" href="/app/perfil">Perfil</a></li>
-                                                    <li className="nav-item" style={{cursor:"pointer"}} onClick={this.sair}><a className="nav-link">Sair</a></li>
+                                                    <li className="nav-item"><Link className="nav-link" to="/app/perfil">Perfil</Link></li>
+                                                    <li className="nav-item" style={{cursor:"pointer"}} onClick={this.sair}><Link className="nav-link">Sair</Link></li>
                                             </ul>
                                             <ul className="nav navbar-nav navbar-right">
-                                                <li className="nav-item"><a href="#" className="cart"><span className="ti-bag"></span></a></li>
+                                                <li className="nav-item"><Link to="#" className="cart"><span className="ti-bag"></span></Link></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -111,7 +112,7 @@ export default class Banner extends Component{
                             <nav class="navbar navbar-expand-lg navbar-light main_box">
                                 <div class="container">
                         
-                            <a class="navbar-brand logo_h" href="index.html"><img style={{width : "40%", height:"25%"}} src="img/logo.png" alt=""/></a>
+                            <Link class="navbar-brand logo_h" to="index.html"><img style={{width : "40%", height:"25%"}} src="img/logo.png" alt=""/></Link>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="icon-bar"></span>
@@ -121,10 +122,10 @@ export default class Banner extends Component{
                         
                             <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                                 <ul class="nav navbar-nav menu_nav ml-auto">
-                                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                                    <li class="nav-item"><Link class="nav-link" to="/">Home</Link></li>
 
-                                    <li class="nav-item"><a class="nav-link" href="/registro">Cadastrar</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                                    <li class="nav-item"><Link class="nav-link" to="/registro">Cadastrar</Link></li>
+                                    <li class="nav-item"><Link class="nav-link" to="/login">Login</Link></li>
                                 </ul>
                             </div>
                         </div>
