@@ -1,8 +1,14 @@
 import React, {Component} from "react";
 
-import { isAuthenticated, getToken } from './../../services/auth'
+import { isAuthenticated, getToken, logout } from './../../services/auth';
 
 export default class Banner extends Component{
+
+    sair = () => {
+        logout();
+        window.location.reload();
+    }
+
     render(){
 
         if(isAuthenticated() && getToken().database.isAdmin){
@@ -23,22 +29,22 @@ export default class Banner extends Component{
                             
                                 <div className="collapse navbar-collapse offset" id="navbarSupportedContent">
                                     <ul className="nav navbar-nav menu_nav ml-auto">
-                                        <li className="nav-item"><a className="nav-link" href="index.html">Home</a></li>
-                                        <li className="nav-item"><a className="nav-link" href="#">Admin</a></li>
+                                        <li className="nav-item"><a className="nav-link" href="/">Home</a></li>
+                                        <li className="nav-item" style={{cursor:"pointer"}}><a className="nav-link" >Admin</a></li>
                                 
                                         <li className="nav-item submenu dropdown">
                                             <a href="category.html" className="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                             aria-expanded="false">Loja</a>
                                             <ul className="dropdown-menu">
-                                                <li className="nav-item"><a className="nav-link" href="checkout.html">Meus Produtos</a></li>
-                                                <li className="nav-item"><a className="nav-link" href="cart.html">Produtos</a></li>
+                                                <li className="nav-item"><a className="nav-link" href="/app/meus-produtos">Meus Produtos</a></li>
+                                                <li className="nav-item"><a className="nav-link" href="/app/produtos">Produtos</a></li>
                                             </ul>
                                         </li>
-                                        <li className="nav-item"><a className="nav-link" href="registration.html">Perfil</a></li>
-                                        <li className="nav-item"><a className="nav-link" href="registration.html">Sair</a></li>
+                                        <li className="nav-item"><a className="nav-link" href="/app/perfil">Perfil</a></li>
+                                        <li className="nav-item" style={{cursor:"pointer"}} onClick={this.sair}><a className="nav-link">Sair</a></li>
                                     </ul>
                                     <ul className="nav navbar-nav navbar-right">
-                                        <li className="nav-item"><a href="#" className="cart"><span className="ti-bag"></span></a></li>
+                                        <li className="nav-item"><a href="#" className="cart"><i className="fas fa-shopping-cart"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -69,18 +75,18 @@ export default class Banner extends Component{
                         
                                         <div className="collapse navbar-collapse offset" id="navbarSupportedContent">
                                             <ul className="nav navbar-nav menu_nav ml-auto">
-                                                <li className="nav-item"><a className="nav-link" href="index.html">Home</a></li>
+                                                <li className="nav-item"><a className="nav-link" href="/">Home</a></li>
                                         
                                                 <li className="nav-item submenu dropdown">
                                                     <a href="category.html" className="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                                     aria-expanded="false">Loja</a>
                                                     <ul className="dropdown-menu">
-                                                        <li className="nav-item"><a className="nav-link" href="checkout.html">Meus Produtos</a></li>
-                                                        <li className="nav-item"><a className="nav-link" href="cart.html">Produtos</a></li>
+                                                        <li className="nav-item"><a className="nav-link" href="/app/meus-produtos">Meus Produtos</a></li>
+                                                        <li className="nav-item"><a className="nav-link" href="/app/produtos">Produtos</a></li>
                                                     </ul>
                                                 </li>
-                                                    <li className="nav-item"><a className="nav-link" href="registration.html">Perfil</a></li>
-                                                    <li className="nav-item"><a className="nav-link" href="registration.html">Sair</a></li>
+                                                    <li className="nav-item"><a className="nav-link" href="/app/perfil">Perfil</a></li>
+                                                    <li className="nav-item" style={{cursor:"pointer"}} onClick={this.sair}><a className="nav-link">Sair</a></li>
                                             </ul>
                                             <ul className="nav navbar-nav navbar-right">
                                                 <li className="nav-item"><a href="#" className="cart"><span className="ti-bag"></span></a></li>
@@ -115,10 +121,10 @@ export default class Banner extends Component{
                         
                             <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                                 <ul class="nav navbar-nav menu_nav ml-auto">
-                                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
 
-                                    <li class="nav-item"><a class="nav-link" href="registration.html">Cadastrar</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/registro">Cadastrar</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
                                 </ul>
                             </div>
                         </div>
