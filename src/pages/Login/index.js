@@ -46,6 +46,7 @@ export default class Login extends Component {
 
     render() {
         return (
+            
             <div className="container">
                 {this.state.erro.description && <div id="erro" className={`alert alert-danger mt-2 mb-2 ${this.state.erro.animation}`} role="alert"> {this.state.erro.description}</div>}
                 <div className="card mt-4 mb-2">
