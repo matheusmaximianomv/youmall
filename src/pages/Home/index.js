@@ -16,7 +16,7 @@ export default class Home extends Component{
                                     <div className="row single d-flex">
                                         <div className="col-lg-5 col-md-6" style={{padding:"15px"}}>
                                             <div className="banner-content">
-                                                <h1><br/><br/>Bem Vindo ao<br/>YouMall!</h1>
+                                                <h1>Bem Vindo ao<br/>YouMall!</h1>
                                                 
                                             </div>
                                         </div>
