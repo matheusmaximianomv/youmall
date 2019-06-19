@@ -10,6 +10,8 @@ import AuthenticationRoute from './AuthenticationRoute';
 /* Páginas de Registro e Autenticação */
 import Registro from './../pages/Registro';
 import Login from './../pages/Login';
+/* Pagina Home */
+import Home from './../pages/Home';
 /* Páginas de Produtos Gerais da Plataforma */
 import Produtos from './../pages/Produtos';
 import ProdutoSlug from './../pages/Produtos/ProdutoSlug/index';
@@ -30,7 +32,7 @@ export default class Routes extends Component {
       <BrowserRouter>
         <Switch>
           {/* Rotas Comuns */}
-          <Route exact path="/" component={() =>  <NavBar/>} />
+          <Route exact path="/" component={Home}/>
           <AuthenticationRoute path="/login" component={Login} />
           <AuthenticationRoute path="/registro" component={Registro} />
           {/* Rotas Com Autenticação */}
