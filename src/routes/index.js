@@ -21,6 +21,7 @@ import EditarProduto from '../pages/EditarProduto';
 import Perfil from '../pages/Perfil';
 
 import Banner from '../components/Banner';
+import NavBar from '../components/NavBar';
 
 export default class Routes extends Component {
 
@@ -29,7 +30,7 @@ export default class Routes extends Component {
       <BrowserRouter>
         <Switch>
           {/* Rotas Comuns */}
-          <Route exact path="/" component={() => <Banner title="Vai da certo"/>} />
+          <Route exact path="/" component={() =>  <NavBar/>} />
           <AuthenticationRoute path="/login" component={Login} />
           <AuthenticationRoute path="/registro" component={Registro} />
           {/* Rotas Com Autenticação */}
