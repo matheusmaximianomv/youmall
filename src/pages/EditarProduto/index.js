@@ -168,7 +168,7 @@ export default class EditarProduto extends Component {
                                     </div>
                                     <div className="form-group col-md-4">
                                         <label htmlFor="price">Preço</label>
-                                        <input type="text" className="form-control" id="price" placeholder="Preço : 400.50" onChange={event => this.setState({ preco: event.target.value })} value={this.state.preco}/>
+                                        <input type="number" min="1" step="0.01" className="form-control" id="price" placeholder="Preço : 400.50" onChange={event => this.setState({ preco: event.target.value })} value={this.state.preco}/>
                                     </div>
                                     <div className="form-group col-md-4">
                                         <label htmlFor="quantity">Quantidade</label>

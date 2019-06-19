@@ -17,6 +17,8 @@ import ProdutoSlug from './../pages/Produtos/ProdutoSlug/index';
 import MeusProdutos from './../pages/MeusProdutos';
 import NovoProduto from '../pages/NovoProduto';
 import EditarProduto from '../pages/EditarProduto';
+/* Página de Perfil de Usuário */
+import Perfil from '../pages/Perfil';
 
 import Banner from '../components/Banner';
 
@@ -32,7 +34,7 @@ export default class Routes extends Component {
           <AuthenticationRoute path="/registro" component={Registro} />
           {/* Rotas Com Autenticação */}
           <PrivateRoute exact path="/app" component={() => <h1>Home</h1>} />
-          <PrivateRoute exact path="/app/perfil" component={() => <h1>Perfil do Usuário</h1>} />
+          <PrivateRoute exact path="/app/perfil" component={Perfil} />
           <PrivateRoute exact path="/app/produtos" component={Produtos} />
           <PrivateRoute exact path="/app/produtos/:slug_product" component={ProdutoSlug} />
           <PrivateRoute exact path="/app/meus-produtos" component={MeusProdutos} />
@@ -41,7 +43,7 @@ export default class Routes extends Component {
           <PrivateRoute path="/app/carrinho" component={() => <h1>Seu Carrinho de Compras</h1>} />
           <PrivateRoute path="/app/carrinho/pagamento" component={() => <h2>processo de pagamento</h2>} />
           {/* Rotas De Administrador */}
-          <AdministratorRoute exact path="/app/admin"  component={() => <h1>Home do Administrador</h1>} />
+          {/* Dashboard - <AdministratorRoute exact path="/app/admin"  component={() => <h1>Home do Administrador</h1>} /> */}
           <AdministratorRoute exact path="/app/admin/denuncias" component={() => <h1>Página de Denuncias</h1>} />
           <AdministratorRoute path="/app/admin/denuncias/:id" component={() => <h1>Página de Denuncias Única</h1>} />
           {/* Rotas Inexistente */}

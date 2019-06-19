@@ -29,7 +29,7 @@ export default class NovoProduto extends Component {
     }
 
     cadastrarProduto = (event) => {
-        event.preventDefault(event);
+        console.log(this.state.preco);
         this.setState({ register: false });
         const { nameProduct, preco, quantidade, descricao, tamanho, tipo, img } = this.state;
         console.log(nameProduct, preco, quantidade, descricao, tamanho, tipo, img);
@@ -129,7 +129,7 @@ export default class NovoProduto extends Component {
                                 </div>
                                 <div className="form-group col-md-4">
                                     <label htmlFor="price">Preço</label>
-                                    <input type="text" className="form-control" id="price" placeholder="Preço : 400.50" onChange={event => this.setState({ preco: event.target.value })} />
+                                    <input type="number" min="1" step="0.01" className="form-control" id="price" placeholder="Preço : 400,50" onChange={event => this.setState({ preco: event.target.value })} />
                                 </div>
                                 <div className="form-group col-md-4">
                                     <label htmlFor="quantity">Quantidade</label>
