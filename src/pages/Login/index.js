@@ -26,7 +26,7 @@ export default class Login extends Component {
         auth.signInWithEmailAndPassword(email, password)
             .then(async result => {
                 await login(result);
-                this.props.history.push("/app");
+                this.props.history.push("/");
             })
             .catch(error => {
                 console.log(error);
