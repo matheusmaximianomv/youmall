@@ -3,7 +3,7 @@ import { Card, ListGroup, ListGroupItem, CardDeck, Modal, Alert } from 'react-bo
 
 import { db } from './../../config/database';
 import { getToken } from './../../services/auth';
-import { insertInCart } from './../../services/cart';
+import { insertInCart, getCart } from './../../services/cart';
 
 export default class Produtos extends Component {
 
@@ -46,6 +46,10 @@ export default class Produtos extends Component {
                 } else if (user.id) {
                     this.setState({ loading: false });
                 }
+            });
+            const productInCart = getCart();
+            productInCart.map(product => {
+                this.setState({ productsIds : [ ...this.state.productsIds, product.id]});
             });
             return;
         } catch (err) {
@@ -162,10 +166,10 @@ export default class Produtos extends Component {
                                     </ListGroup>
                                     <Card.Body>
                                         <Card.Link style={{ color: "blue", cursor: "pointer" }} onClick={() => this.handleShow(product)}>Denunciar</Card.Link>
-                                        <Card.Link to={`/app/produtos/${product.id}`}>
+                                        <Card.Link href={`/app/produtos/${product.id}`}>
                                             Detalhes
                                         </Card.Link>
-                                        <Card.Link onClick={() => this.adicionarCarrinho(product)}>Adicionar</Card.Link>
+                                        <Card.Link style={{cursor : "pointer"}} onClick={() => this.adicionarCarrinho(product)}>Adicionar</Card.Link>
                                     </Card.Body>
                                 </Card>
                             ))}

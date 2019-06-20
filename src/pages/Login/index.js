@@ -30,7 +30,6 @@ export default class Login extends Component {
         this.setState({ enter: true });
         const auth = firebase.auth();
         const { email, password } = this.state;
-        console.log(email, password);
 
         auth.signInWithEmailAndPassword(email, password)
             .then(async result => {
@@ -41,7 +40,6 @@ export default class Login extends Component {
                 return;
             })
             .catch(error => {
-                console.log(error);
                 this.setState({ erro: { description: 'Seu email ou senha não está cadastrado', animation: 'animated bounceIn' } });
                 // Tempo para visualizar
                 setTimeout(() => {
