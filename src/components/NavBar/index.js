@@ -45,7 +45,7 @@ export default class Banner extends Component{
                                         <li className="nav-item" style={{cursor:"pointer"}} onClick={this.sair}><Link className="nav-link">Sair</Link></li>
                                     </ul>
                                     <ul className="nav navbar-nav navbar-right">
-                                        <li className="nav-item"><Link to="#" className="cart"><i className="fas fa-shopping-cart"></i></Link></li>
+                                        <li className="nav-item"><Link to="#" className="cart"><i className="fa fa-shopping-cart"></i></Link></li>
                                     </ul>
                                 </div>
                             </div>

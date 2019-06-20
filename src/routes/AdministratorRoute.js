@@ -15,7 +15,7 @@ export default function AdministratorRoute({ component: Component, ...rest }) {
     <Route {...rest} render={
       props => permission() ? 
         ( <Component {...props} {...rest} /> ) 
-        : ( <Redirect to="/app" /> )
+        : ( <Redirect to="/" /> )
       }
     />
   );

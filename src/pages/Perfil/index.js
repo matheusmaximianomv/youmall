@@ -83,7 +83,6 @@ export default class Perfil extends Component {
             await db.collection('users').doc(this.state.userInfo.id).update({name, lastName, username, cpf, estado, cidade, cep, bairro, rua, numero, complemento});
             
             this.setState({showSuccess : true, success : { description : 'Usuário Atualizado com Sucesso', animation : 'animated bounceIn'}});
-            this.setState({loadingSubmit : false});
             setTimeout(() => {this.setState({showSuccess : false});}, 3000);
             setTimeout(() => {window.location.reload();}, 3500);
             return;

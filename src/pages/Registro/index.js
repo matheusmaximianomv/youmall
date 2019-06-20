@@ -105,7 +105,7 @@ export default class Registro extends Component {
 
     render() {
         return (
-            <div className="container">
+            <div>
                 {this.state.erro.description && <div id="erro" className={`alert alert-danger mt-2 mb-2 ${this.state.erro.animation}`} role="alert"> {this.state.erro.description}</div>}
                 {this.state.success.description && <div id="erro" className={`alert alert-success mt-2 mb-2 ${this.state.success.animation}`} role="alert"> {this.state.success.description}</div>}
                 <div className="card mt-4 mb-2">
