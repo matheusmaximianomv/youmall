@@ -163,9 +163,8 @@ export default class Home extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <Link to="" className="primary-btn">Comprar Agora</Link>
+                                <Link to="/registro" className="primary-btn">Comprar Agora</Link>
                             </div>
-
                         </div>
                     </div>
                 </section>
