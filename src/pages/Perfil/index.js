@@ -5,8 +5,7 @@ import { db } from './../../config/database';
 import { getToken } from './../../services/auth';
 
 import Footer from '../../components/Footer';
-import NavBar from '../../components/NavBar'
-import Banner from '../../components/Banner'
+import Banner from '../../components/Banner';
 
 export default class Perfil extends Component {
 
@@ -117,22 +116,51 @@ export default class Perfil extends Component {
         if(!this.state.editProfile){
             return(
                 <div>
-                <h1>Perfil do Usuário - {id}</h1>
-                <p>Bairro - {info.bairro}</p>
-                <p>Cep - {info.cep}</p>
-                <p>Cidade - {info.cidade}</p>
-                <p>Complemento - {info.complemento}</p>
-                <p>Cpf - {info.cpf}</p>
-                <p>Estado - {info.estado}</p>
-                <p>isAdmin - {info.isAdmin ? "True" : "False"}</p>
-                <p>lastName - {info.lastName}</p>
-                <p>Name - {info.name}</p>
-                <p>Número - {info.numero}</p>
-                <p>Rua - {info.rua}</p>
-                <p>Username - {info.username}</p>
-
-                <button onClick={this.changeScreen.bind(this)} className="btn btn-success">Editar</button>
-            </div>
+                    <Banner/>
+                    <div class="col-lg-8 posts-list" style={{margin: "auto"}}>
+                        <div class="comment-form" >
+                            <h4>{info.username}</h4>
+                            <form >
+                                <div class="form-group form-inline">
+                                    <div class="form-group col-lg-6 col-md-6 ">
+                                        <p>Bairro - {info.bairro}</p>
+                                    </div>
+                                    <div class="form-group col-lg-6 col-md-6 ">
+                                        <p>Cep - {info.cep}</p>
+                                    </div>
+                                    <div class="form-group col-lg-6 ">
+                                        <p>Cidade - {info.cidade}</p>
+                                    </div>
+                                    <div class="form-group col-lg-6 ">
+                                        <p>Complemento - {info.complemento}</p>
+                                    </div>
+                                    <div class="form-group col-lg-6 ">
+                                        <p>Cpf - {info.cpf}</p>
+                                    </div>
+                                    <div class="form-group col-lg-6 ">
+                                        <p>Estado - {info.estado}</p>
+                                    </div>
+                                    <div class="form-group col-lg-6 ">
+                                        <p>Sobrenome - {info.lastName}</p>
+                                    </div>
+                                    <div class="form-group col-lg-6 ">
+                                        <p>Nome - {info.name}</p>
+                                    </div>
+                                    <div class="form-group col-lg-6 ">
+                                        <p>Nº da Casa - {info.numero}</p>
+                                    </div>
+                                    <div class="form-group col-lg-6 ">
+                                        <p>Rua - {info.rua}</p>
+                                    </div>
+                                    <div class="form-group col-lg-6 ">
+                                        <p>ID - {id}</p>
+                                    </div>
+                                </div>
+                            </form>
+                            <button onClick={this.changeScreen.bind(this)} className="primary-btn submit_btn">Editar Perfil</button>
+                        </div>
+                    </div>
+                </div>
             );
         } else {
             return(
@@ -149,17 +177,17 @@ export default class Perfil extends Component {
                                         <div className="col-md-6 form-group p_star" style={{ margin: "0 auto"}}>
                                         <div className="card-body">
                                                 <div className="col-md-6 form-group p_star">
-                                                    <label htmlFor="name">name: </label>
+                                                    <label htmlFor="name">Nome: </label>
                                                     <input type="text" className="form-control" id="first" name="name" onChange={(event) => this.setState({ name: event.target.value })} value={this.state.name} /><br />
                                                     
                                                 </div>
                                                 <div className="col-md-6 form-group p_star">
-                                                    <label htmlFor="lastname">lastName: </label>
+                                                    <label htmlFor="lastname">Sobrenome: </label>
                                                     <input type="text" className="form-control" id="last" name="name" onChange={(event) => this.setState({ lastName: event.target.value })} value={this.state.lastName}/><br />
                                                     
                                                 </div>
                                                 <div className="form-group">
-                                                    <label htmlFor="username">username: </label>
+                                                    <label htmlFor="username">Username: </label>
                                                     <input className="form-control" id="username" name="username" type="text" onChange={(event) => this.setState({ username: event.target.value })} value={this.state.username}/><br />
                                                 </div>
                                                 <div className="col-md-6 form-group p_star">
@@ -168,12 +196,12 @@ export default class Perfil extends Component {
                                                     
                                                 </div>
                                                 <div className="col-md-6 form-group p_star">
-                                                    <label htmlFor="state">State: </label>
+                                                    <label htmlFor="state">Estado: </label>
                                                     <input type="text" className="form-control" id="email" name="compemailany" onChange={(event) => this.setState({ estado: event.target.value })} value={this.state.estado}/><br />
                                                     
                                                 </div>
                                                 <div className="col-md-6 form-group p_star">
-                                                    <label htmlFor="city">City: </label>
+                                                    <label htmlFor="city">Cidade: </label>
                                                     <input type="text" className="form-control" id="number" name="number" onChange={(event) => this.setState({ cidade: event.target.value })} value={this.state.cidade}/><br />
                                                     
                                                 </div>
@@ -183,19 +211,19 @@ export default class Perfil extends Component {
                                                     
                                                 </div>
                                                 <div className="col-md-12 form-group p_star">
-                                                    <label htmlFor="neighborhood">Neighborhood: </label>
+                                                    <label htmlFor="neighborhood">Bairro: </label>
                                                     <input className="form-control" id="neighborhood" name="neighborhood" type="text" onChange={(event) => this.setState({ bairro: event.target.value })} value={this.state.bairro}/><br />
                                                 </div>
                                                 <div className="col-md-12 form-group p_star">
-                                                    <label htmlFor="street">Street: </label>
+                                                    <label htmlFor="street">Rua: </label>
                                                     <input className="form-control" id="street" name="street" type="text" onChange={(event) => this.setState({ rua: event.target.value })} value={this.state.rua}/><br />
                                                 </div>
                                                 <div className="col-md-12 form-group p_star">
-                                                    <label htmlFor="number">House Number: </label>
+                                                    <label htmlFor="number">Nº da Casa: </label>
                                                     <input className="form-control" id="number" name="number" type="text" onChange={(event) => this.setState({ numero: event.target.value })} value={this.state.numero}/><br />
                                                 </div>
                                                 <div className="col-md-12 form-group p_star">
-                                                    <label htmlFor="complement">Complement: </label>
+                                                    <label htmlFor="complement">Complemento: </label>
                                                     <input className="form-control" id="complement" name="complement" type="text" onChange={(event) => this.setState({ complemento: event.target.value })} value={this.state.complemento}/><br />
                                                 </div>
                                                 {!this.state.saving &&
