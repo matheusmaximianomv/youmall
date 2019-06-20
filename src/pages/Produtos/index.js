@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Card, ListGroup, ListGroupItem, CardDeck, Modal, Alert } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 
 import { db } from './../../config/database';
 import { getToken } from './../../services/auth';
+import { insertInCart } from './../../services/cart';
 
 export default class Produtos extends Component {
 
@@ -23,7 +23,8 @@ export default class Produtos extends Component {
         error : {
             description : '',
             animation : ''
-        }
+        },
+        productsIds : []
     }
 
     handleClose = () => {
@@ -77,6 +78,20 @@ export default class Produtos extends Component {
             this.setState({showError : true, error : { description : 'Não foi Possível Enviar sua Denúncia, Tente Novamente Mais Tarde...', animation : 'animated bounceIn'}});
             setTimeout(() => {this.setState({showError : false});}, 3000);
         }
+    }
+
+    adicionarCarrinho = (product) => {
+        const { productsIds } = this.state;
+        if(productsIds.indexOf(product.id) > -1) {
+            this.setState({showError : true, error : { description : 'Você Já Adicionou esse produto ao seu carrinho', animation : 'animated bounceIn'}});
+            setTimeout(() => {this.setState({showError : false});}, 3000);
+        } else {
+            insertInCart(product);
+            this.setState({ productsIds : [...this.state.productsIds, product.id]});
+            this.setState({showSuccess : true, success : { description : 'Produto Adicionado ao Seu Carrinho', animation : 'animated bounceIn'}});
+            setTimeout(() => {this.setState({showSuccess : false});}, 3000);
+        }
+        return;
     }
 
     render() {
@@ -147,12 +162,10 @@ export default class Produtos extends Component {
                                     </ListGroup>
                                     <Card.Body>
                                         <Card.Link style={{ color: "blue", cursor: "pointer" }} onClick={() => this.handleShow(product)}>Denunciar</Card.Link>
-                                        <Card.Link href="#">
-                                            <Link to={`/app/produtos/${product.id}`}>
-                                                Detalhes
-                                            </Link>
+                                        <Card.Link to={`/app/produtos/${product.id}`}>
+                                            Detalhes
                                         </Card.Link>
-                                        <Card.Link href="#">Adicionar</Card.Link>
+                                        <Card.Link onClick={() => this.adicionarCarrinho(product)}>Adicionar</Card.Link>
                                     </Card.Body>
                                 </Card>
                             ))}

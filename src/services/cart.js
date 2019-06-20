@@ -3,7 +3,7 @@ export const CART = "@cart";
 export const insertInCart = (product) => {
 
     const productForCart = {
-        id: product.id, imgUrl: product.data.imgUrl, name: product.data.name, price: product.data.preco, quantityMax: product.data.quantidade, quantityForPurchase: product.data.quantityForPurchase 
+        id: product.id, imgUrl: product.data.imgUrl, name: product.data.name, price: product.data.preco, quantityMax: product.data.quantidade
     }
     try{
         if(!!JSON.parse(window.atob(localStorage.getItem(CART))))
