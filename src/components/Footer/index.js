@@ -20,12 +20,12 @@ export default class Footer extends Component {
                                 <h6>Fique por dentro</h6>
                                 <p>Receba novidades sobre nosso site</p>
                                 <div className="" id="mc_embed_signup">
-                                    <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" className="form-inline">
+                                    <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" className="form-inline">
                                         <div className="d-flex flex-row">
-                                            <input className="form-control" name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '" required="" type="email" />
+                                            <input className="form-control" name="EMAIL" placeholder="Enter Email" type="email" />
                                             <button className="click-btn btn btn-default"><i className="fa fa-long-arrow-right" aria-hidden="true"></i></button>
                                             <div style={{position: "absolute", left: "-5000px"}}>
-                                                <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text" />
+                                                <input name="b_36c4fd991d266f23781ded980_aefe40901a" type="text" />
                                             </div>
                                         </div>
                                         <div className="info"></div>
@@ -53,10 +53,10 @@ export default class Footer extends Component {
                                 <h6>Siga-nos</h6>
                                 <p>Siga-nos nas redes sociais</p>
                                 <div className="footer-social d-flex align-items-center">
-                                    <Link to="#"><i className="fa fa-facebook"></i></Link>
-                                    <Link to="#"><i className="fa fa-twitter"></i></Link>
-                                    <Link to="#"><i className="fa fa-dribbble"></i></Link>
-                                    <Link to="#"><i className="fa fa-behance"></i></Link>
+                                    <Link to="/"><i className="fa fa-facebook"></i></Link>
+                                    <Link to="/"><i className="fa fa-twitter"></i></Link>
+                                    <Link to="/"><i className="fa fa-dribbble"></i></Link>
+                                    <Link to="/"><i className="fa fa-behance"></i></Link>
                                 </div>
                             </div>
                         </div>
