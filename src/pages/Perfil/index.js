@@ -4,6 +4,7 @@ import { Alert } from 'react-bootstrap';
 import { db } from './../../config/database';
 import { getToken } from './../../services/auth';
 
+import NavBar from './../../components/NavBar';
 import Footer from '../../components/Footer';
 import Banner from '../../components/Banner';
 
@@ -111,49 +112,47 @@ export default class Perfil extends Component {
                 }}><div className="spinner-border text-primary" role="status"><span className="sr-only">Loading...</span></div></div>
             );
 
-        const { info, id } = this.state.userInfo;
+        const { info } = this.state.userInfo;
         
         if(!this.state.editProfile){
             return(
                 <div>
-                    <Banner/>
-                    <div class="col-lg-8 posts-list" style={{margin: "auto"}}>
-                        <div class="comment-form" >
+                    <NavBar />
+                    <Banner title="Perfil"/>
+                    <div className="col-lg-8 posts-list" style={{margin: "auto"}}>
+                        <div className="comment-form" >
                             <h4>{info.username}</h4>
                             <form >
-                                <div class="form-group form-inline">
-                                    <div class="form-group col-lg-6 col-md-6 ">
+                                <div className="form-group form-inline">
+                                    <div className="form-group col-lg-6 col-md-6 ">
                                         <p>Bairro - {info.bairro}</p>
                                     </div>
-                                    <div class="form-group col-lg-6 col-md-6 ">
+                                    <div className="form-group col-lg-6 col-md-6 ">
                                         <p>Cep - {info.cep}</p>
                                     </div>
-                                    <div class="form-group col-lg-6 ">
+                                    <div className="form-group col-lg-6 ">
                                         <p>Cidade - {info.cidade}</p>
                                     </div>
-                                    <div class="form-group col-lg-6 ">
+                                    <div className="form-group col-lg-6 ">
                                         <p>Complemento - {info.complemento}</p>
                                     </div>
-                                    <div class="form-group col-lg-6 ">
+                                    <div className="form-group col-lg-6 ">
                                         <p>Cpf - {info.cpf}</p>
                                     </div>
-                                    <div class="form-group col-lg-6 ">
+                                    <div className="form-group col-lg-6 ">
                                         <p>Estado - {info.estado}</p>
                                     </div>
-                                    <div class="form-group col-lg-6 ">
+                                    <div className="form-group col-lg-6 ">
                                         <p>Sobrenome - {info.lastName}</p>
                                     </div>
-                                    <div class="form-group col-lg-6 ">
+                                    <div className="form-group col-lg-6 ">
                                         <p>Nome - {info.name}</p>
                                     </div>
-                                    <div class="form-group col-lg-6 ">
+                                    <div className="form-group col-lg-6 ">
                                         <p>Nº da Casa - {info.numero}</p>
                                     </div>
-                                    <div class="form-group col-lg-6 ">
+                                    <div className="form-group col-lg-6 ">
                                         <p>Rua - {info.rua}</p>
-                                    </div>
-                                    <div class="form-group col-lg-6 ">
-                                        <p>ID - {id}</p>
                                     </div>
                                 </div>
                             </form>
@@ -165,7 +164,8 @@ export default class Perfil extends Component {
         } else {
             return(
                 <div>
-                    <Banner/>
+                    <NavBar />
+                    <Banner title="Perfil"/>
                     {this.state.showSuccess && <Alert variant={'success'} className={this.state.success.animation}> {this.state.success.description} </Alert>}
                     {this.state.showError && <Alert variant={'danger'} className={this.state.error.animation}> {this.state.error.description} </Alert>}
                     <section className="checkout_area section_gap" >
@@ -186,7 +186,7 @@ export default class Perfil extends Component {
                                                     <input type="text" className="form-control" id="last" name="name" onChange={(event) => this.setState({ lastName: event.target.value })} value={this.state.lastName}/><br />
                                                     
                                                 </div>
-                                                <div className="form-group">
+                                                <div className="col-md-12 form-group p_star">
                                                     <label htmlFor="username">Username: </label>
                                                     <input className="form-control" id="username" name="username" type="text" onChange={(event) => this.setState({ username: event.target.value })} value={this.state.username}/><br />
                                                 </div>
