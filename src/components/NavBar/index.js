@@ -31,7 +31,7 @@ export default class Banner extends Component {
                                     <div className="collapse navbar-collapse offset" id="navbarSupportedContent">
                                         <ul className="nav navbar-nav menu_nav ml-auto">
                                             <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
-                                            <li className="nav-item" style={{ cursor: "pointer" }}><Link className="nav-link" >Admin</Link></li>
+                                            <li className="nav-item" style={{ cursor: "pointer" }}><Link to="/app/admin/denuncias" className="nav-link" >Admin</Link></li>
 
                                             <li className="nav-item submenu dropdown">
                                                 <Link className="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"

@@ -25,6 +25,9 @@ import Perfil from '../pages/Perfil';
 import Carrinho from './../pages/Carrinho';
 /* Página do Pagamento */
 import Pagamento from './../pages/Pagamento';
+/* Página do Administrador de Denúncias */
+import Denuncias from './../pages/Denuncias';
+import DenunciaSlug from './../pages/Denuncias/DenunciaSlug';
 
 export default class Routes extends Component {
 
@@ -47,8 +50,8 @@ export default class Routes extends Component {
           <PrivateRoute exact path="/app/carrinho/pagamento" component={Pagamento} />
           {/* Rotas De Administrador */}
           {/* Dashboard - <AdministratorRoute exact path="/app/admin"  component={() => <h1>Home do Administrador</h1>} /> */}
-          <AdministratorRoute exact path="/app/admin/denuncias" component={() => <h1>Página de Denuncias</h1>} />
-          <AdministratorRoute exact path="/app/admin/denuncias/:id" component={() => <h1>Página de Denuncias Única</h1>} />
+          <AdministratorRoute exact path="/app/admin/denuncias" component={Denuncias} />
+          <AdministratorRoute exact path="/app/admin/denuncias/:id" component={DenunciaSlug} />
           {/* Rotas Inexistente */}
           <Route path="*" component={() => <h1>Página Não Encontrada</h1>} />
         </Switch>
