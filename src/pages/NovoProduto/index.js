@@ -29,10 +29,10 @@ export default class NovoProduto extends Component {
     }
 
     cadastrarProduto = (event) => {
-        console.log(this.state.preco);
+        event.preventDefault(event);
         this.setState({ register: false });
         const { nameProduct, preco, quantidade, descricao, tamanho, tipo, img } = this.state;
-        console.log(nameProduct, preco, quantidade, descricao, tamanho, tipo, img);
+        console.log(tipo);
 
         if (!nameProduct || !preco || !quantidade || !descricao || !tamanho || !tipo || !img) {
             this.setState({ erro: { description: 'Campos Inválidos', animation: 'animated bounceIn' } });
@@ -114,6 +114,7 @@ export default class NovoProduto extends Component {
     }
 
     render() {
+        console.log(this.state.tipo);
         return (
             <div className="container mt-3 mb-3">
                 <h1>Adicionar Produto</h1>
@@ -133,7 +134,7 @@ export default class NovoProduto extends Component {
                                 </div>
                                 <div className="form-group col-md-4">
                                     <label htmlFor="quantity">Quantidade</label>
-                                    <input type="number" className="form-control" id="quantity" placeholder="Quantidade de Produtos" onChange={event => this.setState({ quantidade: event.target.value })} />
+                                    <input type="number" className="form-control" id="quantity" min="1" step="1" placeholder="Quantidade de Produtos" onChange={event => this.setState({ quantidade: event.target.value })} />
                                 </div>
                             </div>
                             <div className="form-group">

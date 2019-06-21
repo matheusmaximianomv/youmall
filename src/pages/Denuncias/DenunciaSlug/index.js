@@ -97,6 +97,7 @@ export default class Denuncias extends Component {
                 quantityProduct : this.state.item.data.quantidade
             });
             await db.collection('products').doc(this.state.item.id).delete();
+            await db.collection('denunciations').doc(this.state.complaint.id).delete();
             this.setState({showSuccess : true, show: false, showModal : false, success : { description : 'Mensagem Enviada Com Sucesso.', animation : 'animated bounceIn'}});
             setTimeout(() => {this.setState({showSuccess : false});}, 3000);
             setTimeout(() => {window.location.assign('/app/admin/denuncias');}, 3500);
@@ -165,7 +166,7 @@ export default class Denuncias extends Component {
                             <button type="button" className="btn btn-danger" onClick={this.handleClose}>
                                 Cancelar
                         </button>
-                            <button type="submit" onClick={this.denunciarItem} className="btn btn-primary">
+                            <button type="submit" onClick={this.confimarDenuncia} className="btn btn-primary">
                                 Enviar e Deletar
                         </button>
                         </Modal.Footer>

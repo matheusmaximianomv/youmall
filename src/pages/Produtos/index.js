@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {p, Modal, Alert } from 'react-bootstrap';
+import { Modal, Alert } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 import { db } from './../../config/database';
 import { getToken } from './../../services/auth';
@@ -171,10 +172,10 @@ export default class Produtos extends Component {
                                                         <div ClassName="prd-bottom">   
                                                             <p className="hover-text" onClick={() => this.handleShow(product)}>Denunciar</p>
                                                             <p href={`/app/produtos/${product.id}`}>Detalhes</p>
-                                                            <a href="" className="social-info">
+                                                            <Link to="" className="social-info">
                                                                 <span className="lnr lnr-move"/>
                                                                 <p className="hover-text" onClick={() => this.adicionarCarrinho(product)}>Adicionar</p>
-                                                            </a>
+                                                            </Link>
                                                         </div>
                                                     </div>
                                                 </div>
