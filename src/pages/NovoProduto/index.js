@@ -3,6 +3,11 @@ import { Link } from 'react-router-dom';
 
 import { db, storage } from './../../config/database';
 import { getToken } from './../../services/auth';
+
+import NavBar from '../../components/NavBar';
+import Banner from '../../components/Banner';
+
+
 export default class NovoProduto extends Component {
 
     state = {
@@ -116,64 +121,64 @@ export default class NovoProduto extends Component {
     render() {
         console.log(this.state.tipo);
         return (
-            <div className="container mt-3 mb-3">
-                <h1>Adicionar Produto</h1>
-                {this.state.erro.description && <div id="erro" className={`alert alert-danger mt-2 mb-2 ${this.state.erro.animation}`} role="alert"> {this.state.erro.description}</div>}
-                {this.state.success.description && <div id="erro" className={`alert alert-success mt-2 mb-2 ${this.state.success.animation}`} role="alert"> {this.state.success.description}</div>}
-                <div className="card">
-                    <div className="card-body">
-                        <form onSubmit={this.cadastrarProduto}>
-                            <div className="form-row">
-                                <div className="form-group col-md-4">
-                                    <label htmlFor="name">Nome</label>
-                                    <input type="text" className="form-control" id="name" placeholder="Nome do Produto" onChange={event => this.setState({ nameProduct: event.target.value })} />
+            <div>
+                <NavBar />
+                <Banner title="Adicionar Produto" />
+                <div className="col-lg-6" style={{marginTop:'0', marginBottom:'0', marginLeft:'auto', marginRight:'auto'}}>
+                    
+                    <div className="login_box_area section_gap">
+                        {this.state.erro.description && <div id="erro" className={`alert alert-danger mt-2 mb-2 ${this.state.erro.animation}`} role="alert"> {this.state.erro.description}</div>}
+                        {this.state.success.description && <div id="erro" className={`alert alert-success mt-2 mb-2 ${this.state.success.animation}`} role="alert"> {this.state.success.description}</div>}
+                        <form className="row login_form" onSubmit={this.cadastrarProduto}>
+                                    <div className="col-md-12 form-group">
+                                        <label htmlFor="name">Nome</label>
+                                        <input className="form-control" id="name" name="name" type="text" placeholder="Nome do Produto" onChange={event => this.setState({ nameProduct: event.target.value })} />
+                                    </div>
+                                    <div className="col-md-12 form-group">
+                                        <label htmlFor="price">Preço</label>
+                                        <input type="number" min="1" step="0.01" className="form-control" id="lastname" placeholder="Preço : 400,50" onChange={event => this.setState({ preco: event.target.value })} />
+                                    </div>
+                                    <div className="col-md-12 form-group">
+                                        <label htmlFor="quantity">Quantidade</label>
+                                        <input type="number" className="form-control" id="quantity" min="1" step="1" placeholder="Quantidade de Produtos" onChange={event => this.setState({ quantidade: event.target.value })} />
+                                    </div>
+                                    <div className="col-md-12 form-group">
+                                    <label htmlFor="description">Descrição</label>
+                                    <textarea className="form-control" id="description" placeholder="Descrição do Produto" onChange={event => this.setState({ descricao: event.target.value })} />
                                 </div>
-                                <div className="form-group col-md-4">
-                                    <label htmlFor="price">Preço</label>
-                                    <input type="number" min="1" step="0.01" className="form-control" id="price" placeholder="Preço : 400,50" onChange={event => this.setState({ preco: event.target.value })} />
-                                </div>
-                                <div className="form-group col-md-4">
-                                    <label htmlFor="quantity">Quantidade</label>
-                                    <input type="number" className="form-control" id="quantity" min="1" step="1" placeholder="Quantidade de Produtos" onChange={event => this.setState({ quantidade: event.target.value })} />
-                                </div>
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="description">Descrição</label>
-                                <textarea className="form-control" id="description" placeholder="Descrição do Produto" onChange={event => this.setState({ descricao: event.target.value })} />
-                            </div>
-                            <div className="form-row">
-                                <div className="form-group col-md-6">
-                                    <label htmlFor="size">Tamanho</label>
-                                    <input type="text" className="form-control" id="size" placeholder="Tamanhos Disponíveis" onChange={event => this.setState({ tamanho: event.target.value })} />
-                                </div>
-                                <div className="form-group col-md-6">
-                                    <label htmlFor="type">Tipo</label>
-                                    <select className="form-control" onChange={event => this.setState({ tipo: event.target.value })}>
-                                        <option value="">Seleciona um Tipo</option>
-                                        <option value="Calçado">Calçado</option>
-                                        <option value="Vestimenta">Vestimenta</option>
-                                        <option value="Acessórios">Acessórios</option>
-                                        <option value="Outros">Outros</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div className="form-group">
-                                <div className="input-group">
-                                    <div className="custom-file">
-                                        <input type="file" className="custom-file-input" id="image" onChange={this.handleImage} />
-                                        <label className="custom-file-label" htmlFor="image">Escolha uma imagem</label>
+                                <div className="col-md-12 form-group">
+                                    <div className="col-md-12 form-group">
+                                        <label htmlFor="size">Tamanho</label>
+                                        <input type="text" className="form-control" id="size" placeholder="Tamanhos Disponíveis" onChange={event => this.setState({ tamanho: event.target.value })} />
+                                    </div>
+                                    <div className="col-md-12 form-group">
+                                        <label htmlFor="type">Tipo</label>
+                                        <select className="form-control" onChange={event => this.setState({ tipo: event.target.value })}>
+                                            <option value="">Seleciona um Tipo</option>
+                                            <option value="Calçado">Calçado</option>
+                                            <option value="Vestimenta">Vestimenta</option>
+                                            <option value="Acessórios">Acessórios</option>
+                                            <option value="Outros">Outros</option>
+                                        </select>
                                     </div>
                                 </div>
-                                {this.state.img && <span>Imagem Selecionada : {this.state.img.name}</span>}
-                            </div>
-                            <div className="form-row mt-3">
-                                {this.state.register && <div className="form-group col-md-1"><Link to="/app/meus-produtos" className="btn btn-primary" style={{color:"#FFF", textDecoration:'none', float:'left'}}>Voltar</Link></div>}
-                                {this.state.register && <div className="form-group col-md-2 offset-md-9"><button type="submit" className="btn btn-success">Cadastrar Produto</button></div>}
-                                {!this.state.register && <div className="form-group offset-md-6 col-md-2"><div className="spinner-border text-primary" role="status"><span className="sr-only">Loading...</span></div></div>}
-                            </div>
-                        </form>
+                                <div className="col-md-12 form-group">
+                                    <div className="col-md-12 form-group">
+                                        <div className="custom-file">
+                                            <input type="file" className="custom-file-input" id="image" onChange={this.handleImage} />
+                                            <label className="custom-file-label" htmlFor="image">Escolha uma imagem</label>
+                                        </div>
+                                    </div>
+                                    {this.state.img && <span>Imagem Selecionada : {this.state.img.name}</span>}
+                                </div>
+                                <div className="col-md-12 form-group">
+                                    {this.state.register && <div className="form-group col-md-12 "><button type="submit" className="primary-btn">Cadastrar</button></div>}
+                                    {this.state.register && <div className="form-group col-md-12 "><Link to="/app/meus-produtos" className="primary-btn" style={{color: "white"}} >Voltar</Link></div>}
+                                    {!this.state.register && <div className="form-group offset-md-6 col-md-2"><div className="spinner-border text-primary" role="status"><span className="sr-only">Loading...</span></div></div>}
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </div>
             </div>
         );
     }
