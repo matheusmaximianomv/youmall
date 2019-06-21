@@ -27,15 +27,15 @@ export default class MeusProdutos extends Component {
 
     async componentWillMount() {
         try {
-            this.setState({ loading : true});
+            this.setState({ loading: true });
             const allProduct = await db.collection('products').get();
             allProduct.forEach(async element => {
                 const user = await element.data().responsavel.get();
                 if (user.id === getToken().uid) {
                     this.setState({ products: [...this.state.products, { id: element.id, data: element.data() }] })
-                    this.setState({ loading : false});
-                } else if(user.id) {
-                    this.setState({ loading : false});
+                    this.setState({ loading: false });
+                } else if (user.id) {
+                    this.setState({ loading: false });
                 }
             });
             return;
@@ -49,7 +49,7 @@ export default class MeusProdutos extends Component {
     }
 
     handleShow = (id) => {
-        this.setState({ show: true, productForDelete : id });
+        this.setState({ show: true, productForDelete: id });
     }
 
     async deletarProduto(id) {
@@ -66,7 +66,7 @@ export default class MeusProdutos extends Component {
             }, 5500);
             this.handleClose();
             window.location.reload();
-            return;   
+            return;
         } catch (err) {
             this.setState({ erro: { description: 'Falha na Remoção', animation: 'animated bounceIn' } });
             // Tempo para visualizar
@@ -81,17 +81,17 @@ export default class MeusProdutos extends Component {
             return;
         }
     }
-    
+
     editarProduto = (id) => {
         window.location.assign(`/app/meus-produtos/editar/${id}`);
     }
 
     render() {
-        if(this.state.loading)
-            return(
+        if (this.state.loading)
+            return (
                 <div style={{
-                    marginTop:'20%',
-                    height:'100%',
+                    marginTop: '20%',
+                    height: '100%',
                     minHeight: '100%',
                     display: 'flex',
                     alignItems: 'center',
@@ -100,8 +100,8 @@ export default class MeusProdutos extends Component {
             );
         return (
             <div>
-                <NavBar/>
-                <Banner title="Meus Produtos"/>
+                <NavBar />
+                <Banner title="Meus Produtos" />
                 <div className="container">
                     {this.state.erro.description && <div id="erro" className={`alert alert-danger mt-2 mb-2 ${this.state.erro.animation}`} role="alert"> {this.state.erro.description}</div>}
                     {this.state.success.description && <div id="erro" className={`alert alert-success mt-2 mb-2 ${this.state.success.animation}`} role="alert"> {this.state.success.description}</div>}
@@ -125,32 +125,30 @@ export default class MeusProdutos extends Component {
                         <Link to="/app/meus-produtos/novo" className="genric-btn primary circle">Adicionar Produto</Link>
                     </div>
                     <div class="progress-table">
-                        <div class="table-head">
-                            <div class="serial">ID</div>
+                        <div class="table-head mb-4">
+                            <div class="visit">ID</div>
                             <div class="country">Nome</div>
                             <div class="visit">Tipo</div>
                             <div class="visit">Quantidade</div>
                             <div class="visit">Preço</div>
                             <div class="visit">Ações</div>
-                            <div class="table-row">
-                                    {this.state.products[0] && this.state.products.map(product => (
-                                        <tr key={product.id}>
-                                            <th scope="col">{product.id}</th>
-                                            <th scope="col">{product.data.name}</th>
-                                            <th scope="col">{product.data.tipo}</th>
-                                            <th scope="col">{product.data.quantidade}</th>
-                                            <th scope="col">{product.data.preco}</th>
-                                            <th scope="col">
-                                            <button type="button" onClick={() => this.editarProduto(product.id)} className="btn btn-primary mr-1">Editar</button>
-                                            <button type="button" onClick={() => this.handleShow(product.id)} className="btn btn-danger ml-1" data-toggle="modal" data-target="">Remover</button>
-                                            </th>
-                                        </tr>
-                                    ))}
-                            </div>
                         </div>
+                        {this.state.products[0] && this.state.products.map(product => (
+                            <div key={product.id} class="table-row">
+                                <div class="visit">{product.id}</div>
+                                <div class="country">{product.data.name}</div>
+                                <div class="visit">{product.data.tipo}</div>
+                                <div class="visit">{product.data.quantidade}</div>
+                                <div class="visit">{product.data.preco}</div>
+                                <div class="visit">
+                                    <button type="button" onClick={() => this.editarProduto(product.id)} className="btn btn-primary mr-1">Editar</button>
+                                    <button type="button" onClick={() => this.handleShow(product.id)} className="btn btn-danger ml-1" data-toggle="modal" data-target="">Remover</button>
+                                </div>
+                        </div>
+                        ))}
                     </div>
-                    {!this.state.products[0] && <p>Nenhum Produto Cadastrado</p> }
                 </div>
+                {!this.state.products[0] && <p>Nenhum Produto Cadastrado</p>}
             </div>
         );
     }
