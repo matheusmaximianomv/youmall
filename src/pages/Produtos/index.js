@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { Card, ListGroup, ListGroupItem, CardDeck, Modal, Alert } from 'react-bootstrap';
+import {p, Modal, Alert } from 'react-bootstrap';
 
 import { db } from './../../config/database';
 import { getToken } from './../../services/auth';
 import { insertInCart, getCart } from './../../services/cart';
+
+import Banner from '../../components/Banner';
+import NavBar from '../../components/NavBar';
 
 export default class Produtos extends Component {
 
@@ -143,38 +146,48 @@ export default class Produtos extends Component {
                         </button>
                     </Modal.Footer>
                 </Modal>
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <h1> Página do Produtos </h1>
-                </div>
-                <div className="container mt-2">
-                {this.state.showSuccess && <Alert variant={'success'} className={this.state.success.animation}> {this.state.success.description} </Alert>}
-                {this.state.showError && <Alert variant={'danger'} className={this.state.error.animation}> {this.state.error.description} </Alert>}
-                    <div className="row" >
-                        <CardDeck>
-                            {this.state.allProducts.map(product => (
-                                <Card key={product.id} style={{ width: '18rem' }}>
-                                    <Card.Img width="222" height="160" variant="top" src={product.data.imgUrl} />
-                                    <Card.Body>
-                                        <Card.Title>{product.data.name}</Card.Title>
-                                        <Card.Text>{product.data.description}</Card.Text>
-                                    </Card.Body>
-                                    <ListGroup className="list-group-flush">
-                                        <ListGroupItem>Preço: R${product.data.preco}</ListGroupItem>
-                                        <ListGroupItem>Quantidade Disponível: {product.data.quantidade}</ListGroupItem>
-                                        <ListGroupItem>Tamanhos Disponíveis: {product.data.tamanho}</ListGroupItem>
-                                        <ListGroupItem>Dono do Produto: {product.author}</ListGroupItem>
-                                    </ListGroup>
-                                    <Card.Body>
-                                        <Card.Link style={{ color: "blue", cursor: "pointer" }} onClick={() => this.handleShow(product)}>Denunciar</Card.Link>
-                                        <Card.Link href={`/app/produtos/${product.id}`}>
-                                            Detalhes
-                                        </Card.Link>
-                                        <Card.Link style={{cursor : "pointer"}} onClick={() => this.adicionarCarrinho(product)}>Adicionar</Card.Link>
-                                    </Card.Body>
-                                </Card>
-                            ))}
-                        </CardDeck>
+
+                <NavBar/>
+                <Banner/>
+                <div className="container">
+                    <div className="col-xl-9 col-lg-8 col-md-7">
+                            <section ClassName="lattest-product-area pb-40 category-list">
+                                <div ClassName="row">
+                                    <div ClassName="col-lg-4 col-md-6">
+                                        <div className="single-product">
+                                            {this.state.allProducts.map(product => (
+                                                <div ClassName="product-details" key={product.id} style={{ width: '18rem' }}>
+                                                    <img className="img-fluid" src={product.data.imgUrl}  alt="Produto"/>
+                                                    <div>
+                                                        <h6>{product.data.name}</h6>
+                                                        <p>{product.data.description}</p>
+                                                        <div ClassName="price">
+                                                            <p>Quantidade Disponível: {product.data.quantidade}</p>
+                                                            <p>Tamanhos Disponíveis: {product.data.tamanho}</p>
+                                                            <p>Dono do Produto: {product.author}</p>
+                                                            <h6 className="l-through">Preço: R${product.data.preco}</h6>
+                                                        </div>
+                                                        <div ClassName="prd-bottom">   
+                                                            <p className="hover-text" onClick={() => this.handleShow(product)}>Denunciar</p>
+                                                            <p href={`/app/produtos/${product.id}`}>Detalhes</p>
+                                                            <a href="" className="social-info">
+                                                                <span className="lnr lnr-move"/>
+                                                                <p className="hover-text" onClick={() => this.adicionarCarrinho(product)}>Adicionar</p>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
                     </div>
+                </div>
+
+                <div ClassName="container mt-2">
+                {this.state.showSuccess && <Alert variant={'success'} ClassName={this.state.success.animation}> {this.state.success.description} </Alert>}
+                {this.state.showError && <Alert variant={'danger'} ClassName={this.state.error.animation}> {this.state.error.description} </Alert>}
                 </div>
             </div >
         );
