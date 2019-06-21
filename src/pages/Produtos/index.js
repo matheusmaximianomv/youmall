@@ -161,7 +161,7 @@ export default class Produtos extends Component {
                                     {this.state.allProducts.map(product => (
                                         <div key={product.id} className="col-lg-4 col-md-6">
 							                <div className="single-product">
-								                <img className="img-fluid" width="262" height="280" src={product.data.imgUrl} alt="" />
+								                <img className="img-fluid" style={{ width: "280px", height:"262px"}} src={product.data.imgUrl} alt="" />
                                                 <div className="product-details">
                                                     <h6>{product.data.name}</h6>
                                                     <div className="price">

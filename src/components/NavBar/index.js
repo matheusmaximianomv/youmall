@@ -42,10 +42,10 @@ export default class Banner extends Component {
                                                 </ul>
                                             </li>
                                             <li className="nav-item"><Link className="nav-link" to="/app/perfil">Perfil</Link></li>
-                                            <li className="nav-item" style={{ cursor: "pointer" }} onClick={this.sair}><Link className="nav-link">Sair</Link></li>
+                                            <li className="nav-item"><Link className="nav-link" to="/app/carrinho">Carrinho</Link></li>
                                         </ul>
                                         <ul className="nav navbar-nav navbar-right">
-                                            <li className="nav-item"><Link to="/app/carrinho" className="cart"><i className="fa fa-shopping-cart"></i></Link></li>
+                                            <li className="nav-item" style={{ cursor: "pointer" }} onClick={this.sair}><Link className="nav-link">Sair</Link></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -87,10 +87,10 @@ export default class Banner extends Component {
                                                 </ul>
                                             </li>
                                             <li className="nav-item"><Link className="nav-link" to="/app/perfil">Perfil</Link></li>
-                                            <li className="nav-item" style={{ cursor: "pointer" }} onClick={this.sair}><Link className="nav-link">Sair</Link></li>
+                                            <li className="nav-item"><Link className="nav-link" to="/app/carrinho">Carrinho</Link></li>    
                                         </ul>
                                         <ul className="nav navbar-nav navbar-right">
-                                            <li className="nav-item"><Link to="/app/carrinho" className="cart"><span className="ti-bag"></span></Link></li>
+                                            <li className="nav-item" style={{ cursor: "pointer" }} onClick={this.sair}><Link className="nav-link">Sair</Link></li>
                                         </ul>
                                     </div>
                                 </div>
