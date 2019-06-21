@@ -5,6 +5,9 @@ import { Image, Spinner, Alert } from 'react-bootstrap';
 import { db, storage } from './../../config/database';
 import { getToken } from './../../services/auth';
 
+import NavBar from '../../components/NavBar';
+import Banner from '../../components/Banner';
+
 export default class EditarProduto extends Component {
 
     state = {
@@ -153,38 +156,38 @@ export default class EditarProduto extends Component {
             );
         return (
             <div>
-                <div className="container mt-3 mb-3">
+                <NavBar/>
+                <Banner title="Editar Produto"/>
+                <div className="col-lg-6" style={{marginTop:'0', marginBottom:'0', marginLeft:'auto', marginRight:'auto'}}>
                     {this.state.showSuccess && <Alert variant={'success'} className={this.state.success.animation}> {this.state.success.description} </Alert>}
                     {this.state.showError && <Alert variant={'danger'} className={this.state.error.animation}> {this.state.error.description} </Alert>}
-                    <h1>Editar o Produto</h1>
                     <Image style={{margin:"2% 42%"}} width="171" height="180" src={this.state.productData.imgUrl} thumbnail />
-                    <div className="card">
-                        <div className="card-body">
-                            <form onSubmit={this.alterarProduto}>
-                                <div className="form-row">
-                                    <div className="form-group col-md-4">
+                    <div className="login_box_area section_gap">
+                        <form className="row login_form" onSubmit={this.cadastrarProduto}>
+                                <div className="col-md-12 form-group">
+                                <div className="col-md-12 form-group">
                                         <label htmlFor="name">Nome</label>
-                                        <input type="text" className="form-control" id="name" placeholder="Nome do Produto" onChange={event => this.setState({ nameProduct: event.target.value })} value={this.state.nameProduct}/>
+                                        <input className="form-control" id="name" name="name" type="text" placeholder="Nome do Produto" onChange={event => this.setState({ nameProduct: event.target.value })} value={this.state.nameProduct}/>
                                     </div>
-                                    <div className="form-group col-md-4">
+                                    <div className="col-md-12 form-group">
                                         <label htmlFor="price">Preço</label>
                                         <input type="number" min="1" step="0.01" className="form-control" id="price" placeholder="Preço : 400.50" onChange={event => this.setState({ preco: event.target.value })} value={this.state.preco}/>
                                     </div>
-                                    <div className="form-group col-md-4">
+                                    <div className="col-md-12 form-group">
                                         <label htmlFor="quantity">Quantidade</label>
                                         <input type="number" className="form-control" id="quantity" placeholder="Quantidade de Produtos" onChange={event => this.setState({quantidade : event.target.value})} value={this.state.quantidade}/>
                                     </div>
                                 </div>
-                                <div className="form-group">
+                                <div className="col-md-12 form-group">
                                     <label htmlFor="description">Descrição</label>
                                     <textarea className="form-control" id="description" placeholder="Descrição do Produto" onChange={event => this.setState({ descricao : event.target.value})} value={this.state.descricao}/>
                                 </div>
-                                <div className="form-row">
-                                    <div className="form-group col-md-6">
+                                <div className="col-md-12 form-group">
+                                    <div className="col-md-12 form-group">
                                         <label htmlFor="size">Tamanho</label>
                                         <input type="text" className="form-control" id="size" placeholder="Tamanhos Disponíveis" onChange={event => this.setState({tamanho : event.target.value})} value={this.state.tamanho}/>
                                     </div>
-                                    <div className="form-group col-md-6">
+                                    <div className="col-md-12 form-group">
                                         <label htmlFor="type">Tipo</label>
                                         <select className="form-control" onChange={event => this.setState({tipo : event.target.value})} value={this.state.tipo}>
                                             <option value="">Seleciona um Tipo</option>
@@ -195,24 +198,25 @@ export default class EditarProduto extends Component {
                                         </select>
                                     </div>
                                 </div>
-                                <div className="form-group">
+                                <div className="col-md-12 form-group">
                                     <div className="input-group">
-                                        <div className="custom-file">
-                                            <input type="file" className="custom-file-input" id="image" onChange={this.handleImage} />
+                                        <div className="col-md-12 form-group">
+                                            <input type="file" className="col-md-12 form-group" id="image" onChange={this.handleImage} />
                                             <label className="custom-file-label" htmlFor="image">Selecionar uma nova imagem</label>
                                         </div>
                                     </div>
                                     {this.state.img && <span>Imagem Selecionada : {this.state.img.name}</span>}
                                 </div>
-                                <div className="form-row mt-3">
-                                    {!this.state.loadingSubmit && <Link to="/app/meus-produtos" className="btn btn-primary" style={{color:"#FFF", textDecoration:'none', float:'left'}}>Voltar</Link>}
-                                    {!this.state.loadingSubmit && <button type="submit" className="btn btn-success offset-md-10">Salvar</button>}
+                                <div className="col-md-12 form-group">
+                                    {!this.state.loadingSubmit && <button type="submit" className="primary-btn">Salvar</button>}
                                     {this.state.loadingSubmit &&  <Spinner style={{marginLeft:'50%'}} animation="border" variant="primary" />}
+                                </div>
+                                <div className="col-md-12 form-group">
+                                    {!this.state.loadingSubmit && <Link to="/app/meus-produtos" className="primary-btn" style={{color:"#FFF", textDecoration:'none', float:'left', textAlign: "center" }}>Voltar</Link>}
                                 </div>
                             </form>
                         </div>
                     </div>
-                </div>
             </div>
         );
     }

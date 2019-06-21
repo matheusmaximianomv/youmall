@@ -173,7 +173,9 @@ export default class NovoProduto extends Component {
                                 </div>
                                 <div className="col-md-12 form-group">
                                     {this.state.register && <div className="form-group col-md-12 "><button type="submit" className="primary-btn">Cadastrar</button></div>}
-                                    {this.state.register && <div className="form-group col-md-12 "><Link to="/app/meus-produtos" className="primary-btn" style={{color: "white"}} >Voltar</Link></div>}
+
+                                    {this.state.register && <div className="form-group col-md-12 "><Link to="/app/meus-produtos" className="primary-btn" style={{color: "white", textAlign: "center"}} >Voltar</Link></div>}
+
                                     {!this.state.register && <div className="form-group offset-md-6 col-md-2"><div className="spinner-border text-primary" role="status"><span className="sr-only">Loading...</span></div></div>}
                                 </div>
                             </form>
