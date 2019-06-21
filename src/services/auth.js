@@ -1,5 +1,7 @@
 import { auth, db } from './../config/database';
 
+import { cancelPurchase } from './cart';
+
 export const TOKEN_KEY = "@youmall";
 
 export const isAuthenticated = () =>  {
@@ -32,5 +34,6 @@ export const login = async (params) => {
 
 export const logout = () => {
     auth.signOut();
+    cancelPurchase();
     localStorage.removeItem(TOKEN_KEY);
 }

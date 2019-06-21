@@ -51,6 +51,7 @@ export default class Produtos extends Component {
                 }
             });
             const productInCart = getCart();
+            // eslint-disable-next-line
             productInCart.map(product => {
                 this.setState({ productsIds : [ ...this.state.productsIds, product.id]});
             });

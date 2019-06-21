@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -18,6 +19,7 @@ export default class Carrinho extends Component {
         const products = getCart();
         if(products) {
             let finalPrice = 0.0;
+            // eslint-disable-next-line
             products.map(product => {
                 finalPrice += parseFloat(product.priceTotal);
             })
@@ -28,13 +30,14 @@ export default class Carrinho extends Component {
     calcularProduto = (indexProduct) => {
         const { products } = this.state;
         let numero = 0.0, finalPrice = 0.0;
+        // eslint-disable-next-line
         products.map((element, index) => {
             if(index === indexProduct) {
                 element.priceTotal = parseFloat(element.quantidade * element.price);
                 numero = element.priceTotal;
             }
         });
-
+        // eslint-disable-next-line
         products.map(product => {
             finalPrice += parseFloat(product.priceTotal);
         })
@@ -44,7 +47,7 @@ export default class Carrinho extends Component {
 
     adicionarItem = (indexProduct) => {
         const { products } = this.state;
-
+        // eslint-disable-next-line
         products.map((element, index) => {
             if(index === indexProduct) {
                 if(parseInt(element.quantidade) + 1 <= parseInt(element.quantityMax)){
@@ -59,7 +62,7 @@ export default class Carrinho extends Component {
 
     removerItem = (indexProduct) => {
         const { products } = this.state;
-
+        // eslint-disable-next-line
         products.map((element, index) => {
             if(index === indexProduct) {
                 if(parseInt(element.quantidade) - 1 > 0) {
@@ -161,13 +164,13 @@ export default class Carrinho extends Component {
                                                 <h5>${this.state.finalPrice}</h5>
                                             </td>
                                         </tr>
-                                        <tr className="row mt-5">
+                                        <div className="row mt-5">
                                             {products[0] &&
-                                            <div className="offset-md-8  col-md-4">
+                                            <div className="offset-md-9  col-md-5">
                                                 <Link className="primary-btn" to="/app/carrinho/pagamento">Finalizar Compra</Link>
                                             </div>
                                             }
-                                        </tr>
+                                        </div>
                                     </tbody>
                                 </table>
                             </div>

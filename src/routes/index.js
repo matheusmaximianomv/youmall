@@ -23,6 +23,8 @@ import EditarProduto from '../pages/EditarProduto';
 import Perfil from '../pages/Perfil';
 /* Página do Carrinho de Compras */
 import Carrinho from './../pages/Carrinho';
+/* Página do Pagamento */
+import Pagamento from './../pages/Pagamento';
 
 export default class Routes extends Component {
 
@@ -42,7 +44,7 @@ export default class Routes extends Component {
           <PrivateRoute exact path="/app/meus-produtos/novo" component={NovoProduto} />
           <PrivateRoute exact path="/app/meus-produtos/editar/:id" component={EditarProduto} />
           <PrivateRoute exact path="/app/carrinho" component={Carrinho} />
-          <PrivateRoute exact path="/app/carrinho/pagamento" component={() => <h2>processo de pagamento</h2>} />
+          <PrivateRoute exact path="/app/carrinho/pagamento" component={Pagamento} />
           {/* Rotas De Administrador */}
           {/* Dashboard - <AdministratorRoute exact path="/app/admin"  component={() => <h1>Home do Administrador</h1>} /> */}
           <AdministratorRoute exact path="/app/admin/denuncias" component={() => <h1>Página de Denuncias</h1>} />
