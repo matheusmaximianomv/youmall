@@ -5,7 +5,6 @@ export const insertInCart = (product) => {
     const productForCart = {
         id: product.id, imgUrl: product.data.imgUrl, name: product.data.name, price: product.data.preco, quantityMax: product.data.quantidade, quantidade : 1, priceTotal : product.data.preco * 1
     }
-    console.log(productForCart.priceTotal);
     try{
         if(!!JSON.parse(window.atob(localStorage.getItem(CART))))
             localStorage.setItem(CART, window.btoa(JSON.stringify([...JSON.parse(window.atob(localStorage.getItem(CART))), productForCart])));
