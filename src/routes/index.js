@@ -13,7 +13,7 @@ import Login from './../pages/Login';
 /* Pagina Home */
 import Home from './../pages/Home';
 /* Páginas de Produtos Gerais da Plataforma */
-import Produtos from './../pages/Produtos';
+import Produtos from './../pages/Produtos/index.1';
 import ProdutoSlug from './../pages/Produtos/ProdutoSlug/index';
 /* Páginas de Controle de Produtos Pessoais  */
 import MeusProdutos from './../pages/MeusProdutos';
