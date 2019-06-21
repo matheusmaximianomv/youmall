@@ -28,6 +28,8 @@ import Pagamento from './../pages/Pagamento';
 /* Página do Administrador de Denúncias */
 import Denuncias from './../pages/Denuncias';
 import DenunciaSlug from './../pages/Denuncias/DenunciaSlug';
+/* Page Not Found */
+import PageNotFound from '../pages/SemPagina';
 
 export default class Routes extends Component {
 
@@ -53,7 +55,7 @@ export default class Routes extends Component {
           <AdministratorRoute exact path="/app/admin/denuncias" component={Denuncias} />
           <AdministratorRoute exact path="/app/admin/denuncias/:id" component={DenunciaSlug} />
           {/* Rotas Inexistente */}
-          <Route path="*" component={() => <h1>Página Não Encontrada</h1>} />
+          <Route path="*" component={PageNotFound} />
         </Switch>
       </BrowserRouter>
     );
