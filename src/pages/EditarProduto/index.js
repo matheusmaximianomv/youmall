@@ -163,7 +163,7 @@ export default class EditarProduto extends Component {
                     {this.state.showError && <Alert variant={'danger'} className={this.state.error.animation}> {this.state.error.description} </Alert>}
                     <Image style={{margin:"2% 42%"}} width="171" height="180" src={this.state.productData.imgUrl} thumbnail />
                     <div className="login_box_area section_gap">
-                        <form className="row login_form" onSubmit={this.cadastrarProduto}>
+                        <form className="row login_form" onSubmit={this.alterarProduto}>
                                 <div className="col-md-12 form-group">
                                 <div className="col-md-12 form-group">
                                         <label htmlFor="name">Nome</label>
